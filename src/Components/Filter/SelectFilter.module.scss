@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    align-items: center;
+    max-width: 480px;
+    width: 200px;
+    height: 55px;
+    box-shadow: 0px 1px 10px rgba(22, 22, 22, 0.171);
+    border-radius: 10px;
+    border: none;
+    padding:0 20px;
+
+    select{
+        width: 100%;
+        border:none;
+        outline: none;
+    }
+
+}
