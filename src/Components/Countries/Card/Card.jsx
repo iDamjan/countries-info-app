@@ -1,17 +1,20 @@
-import classes from './Card.module.scss'
+import LoadingAni from "../../../UI/LoadingAni";
+import classes from "./Card.module.scss";
 
-const Card = () => {
-    return(
-        <div className={classes.card}>
-            <h1>Picture</h1>
-            <div className={classes.info}>
-                <h2>Country</h2>
-                <p>Population:xxx</p>
-                <p>Region:Europe</p>
-                <p>Capital:Berlin</p>
-            </div>
-        </div>
-    )
-}
+const Card = ({ country, region, capital, population, image }) => {
+
+  return (
+    
+    <div className={classes.card}>
+      <img src={image} alt="flag" />
+      <div className={classes.info}>
+        <h2>{country}</h2>
+        <p>{`Region: ${region}`}</p>
+        <p>{`Capital: ${capital}`}</p>
+        <p>{`Population: ${population}`}</p>
+      </div>
+    </div>
+  );
+};
 
 export default Card;
