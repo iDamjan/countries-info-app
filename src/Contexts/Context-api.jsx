@@ -8,8 +8,8 @@ export const ContextApi = React.createContext({
 export const ContextProvider = ({ children }) => {
   const [cardData, setCardData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchFilter, setSearchFilter] = useState("")
-  const [selectFilter, setSelectFilter] = useState("ALL")
+  const [searchFilter, setSearchFilter] = useState("");
+  const [selectFilter, setSelectFilter] = useState("ALL");
 
   const CountriesData = async () => {
     const response = await fetch("https://restcountries.com/v3.1/all");
@@ -24,7 +24,16 @@ export const ContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <ContextApi.Provider value={{ cardData, isLoading, searchFilter, setSearchFilter, selectFilter, setSelectFilter }}>
+    <ContextApi.Provider
+      value={{
+        cardData,
+        isLoading,
+        searchFilter,
+        setSearchFilter,
+        selectFilter,
+        setSelectFilter,
+      }}
+    >
       {children}
     </ContextApi.Provider>
   );

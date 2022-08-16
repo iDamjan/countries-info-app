@@ -5,6 +5,19 @@
 body {
   margin: 0;
   font-family: "Nunito Sans", sans-serif;
+  background-color: var()
+}
+
+:root{
+  --background:white;
+  --text-primary:rgb(20, 20, 20);
+  --box-shadow:rgba(22, 22, 22, 0.171);
+}
+
+[data-theme="dark"]{
+  --background:rgb(26, 26, 26);
+  --text-primary:white;
+  --box-shadow:rgba(255, 255, 255, 0.171);
 }
 
 input[type="search"]::-webkit-search-decoration,

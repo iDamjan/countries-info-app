@@ -2,17 +2,20 @@
   display: flex;
   align-items: center;
   max-width: 30%;
-  color:rgb(20, 20, 20);
-  
+  color:var(--text-primary);
+
   h2 {
     margin: 0;
-    font-size:1.2rem;
+    font-size: 1.2rem;
     text-align: center;
-   
   }
-  img {
+  svg {
     max-width: 100%;
     width: 2rem;
     margin-right: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
