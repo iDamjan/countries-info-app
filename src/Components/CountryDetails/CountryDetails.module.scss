@@ -1,0 +1,19 @@
+.container{
+    padding: 80px 80px;
+section{
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    .details{
+        margin-left:180px;
+    }
+    img{
+        width: 560px;
+        height: 400px;
+    }
+    .countryDetails{
+        display: flex;
+        
+    }
+}
+}

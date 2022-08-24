@@ -1,19 +1,15 @@
 import React from "react";
-import MoonIcon from "../../store/icon-moon.svg";
 import classes from "./ColorMode.module.scss";
 
-
-const ColorMode = ({theme, setTheme}) => {
-
-    
-
-    const colorModeHandler = () => {
-        setTheme(theme == "light" ? "dark" : 'light')
-    }
+const ColorMode = ({ theme, setTheme }) => {
+  const colorModeHandler = () => {
+    setTheme(theme == "light" ? "dark" : "light");
+  };
 
   return (
     <div className={classes.colorMode}>
-      <svg onClick ={colorModeHandler}
+      <svg
+        onClick={colorModeHandler}
         fill="#000000"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 48 48"

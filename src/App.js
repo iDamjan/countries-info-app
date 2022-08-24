@@ -1,24 +1,14 @@
-import "./App.css";
-import { useState } from "react";
-import Header from "./Components/Header/Header";
-import Filter from "./Components/Filter/Filter";
-import Countries from "./Components/Countries/Countries";
-import { ContextProvider } from "./Contexts/Context-api";
+import Home from "./pages/Home";
+import CountryDetail from "./pages/CountryDetail";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
-
-  // COLOR THEME STATE
-  const [theme, setTheme] = useState("light")
-  // COLOR THEME STATE
-
   return (
-    <div className="app" data-theme={theme}>
-      <ContextProvider>
-        <Header setTheme = {setTheme} theme = {theme}/>
-        <Filter />
-        <Countries />
-      </ContextProvider>
-    </div>
+    <Routes>
+      <Route path="/" element = {<Navigate to ="/home" />} />
+      <Route path="/home" element ={<Home />} />
+      <Route path="/home/country-detail/:countryId" element = {<CountryDetail />} />
+    </Routes>
   );
 }
 

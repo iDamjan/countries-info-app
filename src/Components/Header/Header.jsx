@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Logo from "./Logo";
 import ColorMode from "./ColorMode";
 import classes from "./Header.module.scss";

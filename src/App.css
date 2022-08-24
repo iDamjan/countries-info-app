@@ -17,7 +17,7 @@ body {
 [data-theme="dark"]{
   --background:rgb(26, 26, 26);
   --text-primary:white;
-  --box-shadow:rgba(255, 255, 255, 0.171);
+  --box-shadow:rgba(255, 255, 255, 0.082);
 }
 
 input[type="search"]::-webkit-search-decoration,
