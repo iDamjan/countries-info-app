@@ -6,6 +6,7 @@ import LoadingAni from "../../UI/LoadingAni";
 
 const Countries = () => {
   const ctxAPI = useContext(ContextApi);
+  console.log(ctxAPI.cardData)
 
   return (
     <div className={classes.main}>
@@ -43,6 +44,7 @@ const Countries = () => {
                 population={item.population}
                 image={item.flags.png}
                 key={Math.random()}
+                index = {ctxAPI.cardData.indexOf(item)}
               />
             ))}
         </div>

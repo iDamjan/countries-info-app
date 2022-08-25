@@ -2,11 +2,41 @@ import React, { useContext } from "react";
 import { ContextApi } from "../../Contexts/Context-api";
 import LoadingAni from "../../UI/LoadingAni";
 import BackButton from "../../UI/BackButton";
-import classes from './CountryDetails.module.scss'
+import classes from "./CountryDetails.module.scss";
+import { useParams } from "react-router-dom";
 
 export default function CountryDetails() {
   const ctx = useContext(ContextApi);
   const CountryData = ctx.cardData;
+
+  const params = useParams();
+  const index = params.countryId;
+  const currentCountry = CountryData[index];
+
+  let currencies = [""];
+  let languages = [""];
+  let NativeName = [""]
+
+  if (!ctx.isLoading) {
+
+    const currenciesArray = Object.values(currentCountry.currencies);
+    currenciesArray.map((curencie) => {
+      currencies.push(curencie.name);
+    });
+    currencies.splice(0, 1);
+
+    const languagesArray = Object.values(currentCountry.languages);
+    languagesArray.map((language) => {
+      languages.push(language);
+    });
+    languages.splice(0, 1)
+
+   const nativeNameArray = (Object.values(currentCountry.name.nativeName))
+   nativeNameArray.map(name => {
+    NativeName.push(name.official)
+   })
+   NativeName.splice(0, 1)
+  }
 
   return (
     <div className={classes.container}>
@@ -17,29 +47,29 @@ export default function CountryDetails() {
           <BackButton />
           <section>
             <div className="image">
-              <img src={CountryData[0].flags.png} alt="" />
+              <img src={currentCountry.flags.png} alt="flag" />
             </div>
             <div className={classes.details}>
-              <h1>{CountryData[0].name.common}</h1>
-              <div className={classes.countryDetails}>
+              <h1>{currentCountry.name.common}</h1>
+              <div className={classes['country-details']}>
                 <div className="country-details_one">
-                  <p>Native Name: Belgie</p>
-                  <p>Popilation:11111</p>
-                  <p>Regiuon: Europe</p>
-                  <p>Sub region: Western europe</p>
-                  <p>Capital: Brussels</p>
+                  <p>{`Native name: ${NativeName}`}</p>
+                  <p>{`Population: ${currentCountry.population}`}</p>
+                  <p>{`Region: ${currentCountry.region}`}</p>
+                  <p>{`Sub Region: ${currentCountry.subregion}`}</p>
+                  <p>{`Capital: ${currentCountry.capital}`}</p>
                 </div>
-                <div className="country-details_two">
-                  <p>Native Name: Belgie</p>
-                  <p>Popilation:11111</p>
-                  <p>Languages: Dutch, French, German </p>
+                <div className={classes['country-details_two']}>
+                  <p>{`Top level domain: ${currentCountry.tld[0]}`}</p>
+                  <p>{`Currencies: ${currencies}`}</p>
+                  <p>{`Languages: ${languages}`}</p>
                 </div>
               </div>
               <div className="border-countries ">
                 <h2>Border Countries</h2>
-                    <span>Iraq</span>
-                    <span>dwadwa</span>
-                    <span>dwada</span>
+                <span>Iraq</span>
+                <span>dwadwa</span>
+                <span>dwada</span>
               </div>
             </div>
           </section>
