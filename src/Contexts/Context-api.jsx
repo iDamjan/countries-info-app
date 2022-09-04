@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 
 export const ContextApi = React.createContext({
-  cardData: [],
+  countries: [],
 });
 
 export const ContextProvider = ({ children }) => {
-  const [cardData, setCardData] = useState([]);
+
+  const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchFilter, setSearchFilter] = useState("");
   const [selectFilter, setSelectFilter] = useState("ALL");
@@ -14,8 +15,7 @@ export const ContextProvider = ({ children }) => {
   const CountriesData = async () => {
     const response = await fetch("https://restcountries.com/v3.1/all");
     const data = await response.json();
-
-    setCardData(data);
+    setCountries(data);
     setIsLoading(false);
   };
 
@@ -26,7 +26,7 @@ export const ContextProvider = ({ children }) => {
   return (
     <ContextApi.Provider
       value={{
-        cardData,
+        countries: countries,
         isLoading,
         searchFilter,
         setSearchFilter,

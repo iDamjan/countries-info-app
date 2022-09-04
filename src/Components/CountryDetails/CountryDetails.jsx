@@ -4,72 +4,64 @@ import LoadingAni from "../../UI/LoadingAni";
 import BackButton from "../../UI/BackButton";
 import classes from "./CountryDetails.module.scss";
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function CountryDetails() {
-  const ctx = useContext(ContextApi);
-  const CountryData = ctx.cardData;
+  const { countries, isLoading } = useContext(ContextApi);
 
-  const params = useParams();
-  const index = params.countryId;
-  const currentCountry = CountryData[index];
+  const [country, setCountry] = useState();
+  const [borders, setBorders] = useState([""]);
+  const { countryName } = useParams();
 
-  let currencies = [""];
-  let languages = [""];
-  let NativeName = [""]
-
-  if (!ctx.isLoading) {
-
-    const currenciesArray = Object.values(currentCountry.currencies);
-    currenciesArray.map((curencie) => {
-      currencies.push(curencie.name);
+  useEffect(() => {
+    const currentCountry = countries.find((c) => c.name.common === countryName);
+    const currentBorders = currentCountry?.borders.map((border) => {
+      const foundCountry = countries.find((c) => c.cca3 === border);
+      const foundCountryName = foundCountry?.name.common;
+      return foundCountryName;
     });
-    currencies.splice(0, 1);
 
-    const languagesArray = Object.values(currentCountry.languages);
-    languagesArray.map((language) => {
-      languages.push(language);
-    });
-    languages.splice(0, 1)
-
-   const nativeNameArray = (Object.values(currentCountry.name.nativeName))
-   nativeNameArray.map(name => {
-    NativeName.push(name.official)
-   })
-   NativeName.splice(0, 1)
-  }
+    setBorders(currentBorders);
+    setCountry(currentCountry);
+  }, [countries, countryName]);
 
   return (
     <div className={classes.container}>
-      {ctx.isLoading ? (
-        <LoadingAni></LoadingAni>
-      ) : (
+      {isLoading && <LoadingAni />}
+      {!isLoading && country && (
         <div>
           <BackButton />
           <section>
             <div className="image">
-              <img src={currentCountry.flags.png} alt="flag" />
+              <img src={country.flags.png} alt="flag" />
             </div>
             <div className={classes.details}>
-              <h1>{currentCountry.name.common}</h1>
-              <div className={classes['country-details']}>
+              <h1>{country.name.common}</h1>
+              <div className={classes["country-details"]}>
                 <div className="country-details_one">
-                  <p>{`Native name: ${NativeName}`}</p>
-                  <p>{`Population: ${currentCountry.population}`}</p>
-                  <p>{`Region: ${currentCountry.region}`}</p>
-                  <p>{`Sub Region: ${currentCountry.subregion}`}</p>
-                  <p>{`Capital: ${currentCountry.capital}`}</p>
+                  <p>{`Native name: ${Object.keys(country.name.nativeName)
+                    .map((key) => country.name.nativeName[key].official)
+                    .join(", ")}`}</p>
+                  <p>{`Population: ${country.population}`}</p>
+                  <p>{`Region: ${country.region}`}</p>
+                  <p>{`Sub Region: ${country.subregion}`}</p>
+                  <p>{`Capital: ${country.capital}`}</p>
                 </div>
-                <div className={classes['country-details_two']}>
-                  <p>{`Top level domain: ${currentCountry.tld[0]}`}</p>
-                  <p>{`Currencies: ${currencies}`}</p>
-                  <p>{`Languages: ${languages}`}</p>
+                <div className={classes["country-details_two"]}>
+                  <p>{`Top level domain: ${country.tld[0]}`}</p>
+                  <p>{`Currencies: ${Object.keys(country.currencies)
+                    .map((key) => country.currencies[key].name)
+                    .join(", ")}`}</p>
+                  <p>{`Languages: ${Object.keys(country.languages)
+                    .map((key) => country.languages[key])
+                    .join(", ")}`}</p>
                 </div>
               </div>
               <div className="border-countries ">
-                <h2>Border Countries</h2>
-                <span>Iraq</span>
-                <span>dwadwa</span>
-                <span>dwada</span>
+                <h2>Borders</h2>
+                {borders.map((border, index) => (
+                  <span key = {index} >{border}</span>
+                ))}
               </div>
             </div>
           </section>
