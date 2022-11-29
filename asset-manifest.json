@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Countries-info-app/static/css/main.3644ce05.css",
+    "main.js": "/Countries-info-app/static/js/main.d02eb4e4.js",
+    "index.html": "/Countries-info-app/index.html",
+    "static/media/search-outline.svg": "/Countries-info-app/static/media/search-outline.4be0f579536375deb314ddb02b97de8a.svg",
+    "static/media/arrow-back-outline.svg": "/Countries-info-app/static/media/arrow-back-outline.9e2bcfcfaa5eac8c9be219d9a7df348f.svg",
+    "main.3644ce05.css.map": "/Countries-info-app/static/css/main.3644ce05.css.map",
+    "main.d02eb4e4.js.map": "/Countries-info-app/static/js/main.d02eb4e4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3644ce05.css",
+    "static/js/main.d02eb4e4.js"
+  ]
+}
