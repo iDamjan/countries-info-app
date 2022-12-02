@@ -1,13 +1,18 @@
 import Home from "./pages/Home";
 import CountryDetail from "./pages/CountryDetail";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
+
   return (
-    <Routes>
-      <Route path="/" element = {<Navigate to ="/home" />} />
-      <Route path="/home" element ={<Home />} />
-      <Route path="/home/country-detail/:countryName" element = {<CountryDetail />} />
+    <Routes location={location} key={location.pathname}>
+      <Route path="/" element={<Navigate to="/home" />} />
+      <Route path="/home" element={<Home />} />
+      <Route
+        path="/home/country-detail/:countryName"
+        element={<CountryDetail />}
+      />
     </Routes>
   );
 }

@@ -6,3 +6,11 @@
     background-color: var(--background);
     z-index: 1
 }
+
+@media(max-width:40em) {
+    .filterContainer{
+        flex-direction: column;
+        padding: 43px 20px;
+    }
+}
+

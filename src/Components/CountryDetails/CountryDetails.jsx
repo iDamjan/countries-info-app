@@ -3,27 +3,16 @@ import { ContextApi } from "../../Contexts/Context-api";
 import LoadingAni from "../../UI/LoadingAni";
 import BackButton from "../../UI/BackButton";
 import classes from "./CountryDetails.module.scss";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useGetCurrentCountryDetails } from "../hooks/useGetCurrentCountryDetails";
+import { useNavigate } from "react-router-dom";
 
 export default function CountryDetails() {
-  const { countries, isLoading } = useContext(ContextApi);
 
-  const [country, setCountry] = useState();
-  const [borders, setBorders] = useState([""]);
-  const { countryName } = useParams();
-
-  useEffect(() => {
-    const currentCountry = countries.find((c) => c.name.common === countryName);
-    const currentBorders = currentCountry?.borders.map((border) => {
-      const foundCountry = countries.find((c) => c.cca3 === border);
-      const foundCountryName = foundCountry?.name.common;
-      return foundCountryName;
-    });
-
-    setBorders(currentBorders);
-    setCountry(currentCountry);
-  }, [countries, countryName]);
+  const navigate = useNavigate();
+  const { isLoading } = useContext(ContextApi);
+  
+  //CUSTOM HOOK FOR GETING CURRENT CLICKED COUNTRY DETAILS
+  const { borders, country } = useGetCurrentCountryDetails();
 
   return (
     <div className={classes.container}>
@@ -57,11 +46,17 @@ export default function CountryDetails() {
                     .join(", ")}`}</p>
                 </div>
               </div>
-              <div className="border-countries ">
+              <div>
                 <h2>Borders</h2>
-                {borders.map((border, index) => (
-                  <span key = {index} >{border}</span>
-                ))}
+                <div className={classes["border-countries"]}>
+                  {borders !== "No borders avaliable for this country"  ? (
+                    borders.map((border, index) => (
+                      <p onClick = {() => navigate(`/home/country-detail/${border}`)}key={index}>{border}</p>
+                    ))
+                  ) : (
+                    <span>{borders}</span>
+                  )}
+                </div>
               </div>
             </div>
           </section>

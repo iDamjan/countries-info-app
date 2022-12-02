@@ -18,3 +18,13 @@
     }
   }
 }
+
+@media(max-width:40em) {
+  .header{
+    padding: 10px 25px;
+    h1{
+      font-size: 1.5rem;
+      
+    }
+  }
+}

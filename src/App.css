@@ -11,10 +11,12 @@ body {
 :root{
   --background:white;
   --text-primary:rgb(20, 20, 20);
-  --box-shadow:rgba(22, 22, 22, 0.171);
+  --box-shadow:rgba(0, 0, 0, 0.1);
+  --card-background:rgba(243, 243, 243, 0.822);
 }
 
 [data-theme="dark"]{
+  --card-background:rgb(37, 37, 37);
   --background:rgb(26, 26, 26);
   --text-primary:white;
   --box-shadow:rgba(255, 255, 255, 0.082);

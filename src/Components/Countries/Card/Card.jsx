@@ -2,7 +2,9 @@ import classes from "./Card.module.scss";
 import { Link } from "react-router-dom";
 
 const Card = ({ country, region, capital, population, image }) => {
+  
   return (
+
     <Link to={`/home/country-detail/${country}`} className={classes.card}>
       <img src={image} alt="flag" />
       <div className={classes.info}>

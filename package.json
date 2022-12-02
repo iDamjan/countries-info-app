@@ -1,6 +1,6 @@
 {
-  "homepage": "https://iDamjan.github.io/Countries-Info-App",
-  "name": "Countries-info-app",
+  "homepage": "http://iDamjan.github.io/countries-info-app",
+  "name": "countries-info-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

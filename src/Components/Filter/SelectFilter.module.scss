@@ -20,3 +20,10 @@
     }
 
 }
+@media(max-width:40em) {
+    .container{
+      width: 100%;
+      max-width: none;
+      margin-top: 20px;
+    }
+  }
